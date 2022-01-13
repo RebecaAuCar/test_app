@@ -1,20 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <div id="container">
+        <ion-img src="../assets/images/logo.jpg" class="logo logoOut"></ion-img>
+        <ion-card class="content">
+            <ion-card-header>
+                <ion-img src="../assets/images/logo.jpg" class="logo"></ion-img>
+                <ion-card-title>Prueba técnica</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <ion-item>
+                        <ion-icon name="person-outline"></ion-icon>
+                        <ion-input name="email" type="email" required pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" placeholder="Email" formControlName="email" (ngModelChange)="clear('email')"></ion-input>
+                    </ion-item>
+                    <span *ngIf="emailInvalid" class="errorForm">Debe de tener formato de email</span>
+                    <ion-item>
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <ion-input name="pass" type="password" required minlength="5" placeholder="Contraseña" formControlName="pass" (ngModelChange)="clear('pass')"></ion-input>
+                    </ion-item>
+                    <span *ngIf="passInvalid" class="errorForm">Debe de tener al menos 5 caracteres</span>
+                    <ion-item lines="none">
+                        <ion-label>Recordar</ion-label>
+                        <ion-toggle name="reminder" type="boolean" formControlName="reminder" slot="end"></ion-toggle>
+                    </ion-item>
+                    <ion-item lines="none" class="itemSubmit">
+                        <button type="submit" class="submit">Acceder</button>
+                    </ion-item>
+                </form>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>
